@@ -32,8 +32,15 @@ async function main() {
             review: "Weird texture"
         });
 
-        await Fruit.insertMany([kiwi, orange, banana]);
+        //await Fruit.insertMany([kiwi, orange, banana]);
         console.log("Successfully saved all the fruits to fruits db");
+
+        const fruits = await Fruit.find();
+        console.log(fruits);
+
+        fruits.forEach(fruit => {
+            console.log(fruit.name);
+        });
     } catch (error) {
         console.error(error);
     } finally {
