@@ -9,27 +9,32 @@ async function main() {
 
         const fruitSchema = new mongoose.Schema({
             name: String,
-            rating: Number,
+            rating: {
+                type: Number,
+                min: 1,
+                max: 10
+            },
             review: String
         });
         const Fruit = mongoose.model('Fruit', fruitSchema);
 
-        const Apple = new Fruit({
+        const apple = new Fruit({
             name: "Apple",
-            rating: 7,
+            rating: 20,
             review: "Pretty solid as a fruit"
         });
-        //fruit.save
+        await apple.save();
 
         const personSchema = new mongoose.Schema({
-        name: String,
-        age: Number
-            });
-        const Person = mongoose.model("Person", personSchema)
+            name: String,
+            age: Number
+        });
+        const Person = mongoose.model("Person", personSchema);
         const person = new Person({
             name: "John",
-            age:37
+            age: 37
         });
+        //await person.save();
     } catch (error) {
         console.error(error);
     } finally {
