@@ -14,32 +14,21 @@ async function main() {
         });
         const Fruit = mongoose.model('Fruit', fruitSchema);
 
-        const kiwi = new Fruit({
-            name: "Kiwi",
-            rating: 10,
-            review: "The best fruit"
+        const Apple = new Fruit({
+            name: "Apple",
+            rating: 7,
+            review: "Pretty solid as a fruit"
         });
+        //fruit.save
 
-        const orange = new Fruit({
-            name: "Orange",
-            rating: 10,
-            review: "Too sour for me"
-        });
-
-        const banana = new Fruit({
-            name: "Banana",
-            rating: 3,
-            review: "Weird texture"
-        });
-
-        //await Fruit.insertMany([kiwi, orange, banana]);
-        console.log("Successfully saved all the fruits to fruits db");
-
-        const fruits = await Fruit.find();
-        console.log(fruits);
-
-        fruits.forEach(fruit => {
-            console.log(fruit.name);
+        const personSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+            });
+        const Person = mongoose.model("Person", personSchema)
+        const person = new Person({
+            name: "John",
+            age:37
         });
     } catch (error) {
         console.error(error);
